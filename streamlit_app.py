@@ -3,6 +3,20 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+# --- PYODIDE / STLITE PATCH FOR PLOTLY ---
+# Pyodide's pyarrow is incomplete and missing ChunkedArray. 
+# Plotly's new narwhals dependency crashes when it checks for it.
+try:
+    import pyarrow as pa
+    if not hasattr(pa, 'ChunkedArray'):
+        pa.ChunkedArray = type('ChunkedArray', (), {})
+    if not hasattr(pa, 'Table'):
+        pa.Table = type('Table', (), {})
+except Exception:
+    pass
+# -----------------------------------------
+
+
 # =====================================================
 # PAGE CONFIG
 # =====================================================
