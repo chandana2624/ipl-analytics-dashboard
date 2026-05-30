@@ -17,7 +17,7 @@
     <script>
       stlite.mount(
         {
-          requirements: ["pandas", "plotly"],
+          requirements: ["pandas", "plotly<5.24.0"],
           entrypoint: "streamlit_app.py",
           files: {
             "streamlit_app.py": { url: "streamlit_app.py" },
